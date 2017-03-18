@@ -11,9 +11,9 @@ This devkit is based on the following components:
 * ACME https://sourceforge.net/projects/acme-crossass/
 * pucrunch https://github.com/mist64/pucrunch
 * VICE http://vice-emu.sourceforge.net/
-* Genosine https://github.com/cliffordcarnmo/genosine
+* genosine https://github.com/cliffordcarnmo/genosine
 * Pixcen https://github.com/Hammarberg/pixcen
-* Ganged http://www.thegang.nu/releases.php?type=4&year=all&headline=Utils&nomenu=1
+* GangEd http://www.thegang.nu/releases.php?type=4&year=all&headline=Utils&nomenu=1
 * vchar64 https://github.com/ricardoquesada/vchar64
 
 ## Credits
