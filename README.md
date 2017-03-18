@@ -19,4 +19,4 @@ This devkit is based on the following components:
 ## Credits
 Code and graphics by Clifford 'Randy' Carnmo
 
-Music by Joakim 'dlx' Falk
+Music by Joakim 'dLx' Falk
