@@ -1,5 +1,5 @@
  # c64-devkit
-All you need to start programming 6502 assembler for the Commodore 64 on Microsoft Windows.
+All you need to start programming 6510 assembler for the Commodore 64 on Microsoft Windows.
 
 ## Usage
 Run `build.bat` to compile, crunch and launch your code in the VICE emulator. This produces `build\c64-devkit.prg` which is runable on a real Commodore 64 or using an emulator.
