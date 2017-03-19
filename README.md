@@ -94,7 +94,7 @@ Save the file and run build.bat in the root of the c64-devkit folder. Your emula
 ## Analyzing the Hello World example
 ~~~~ 
 	*=$0801
-	Tells the compiler that our code should be located and executed from the hexadecimal memory location 0801 (2039 decimal).
+	Tells the compiler that our code should be located and executed from the hexadecimal memory location 0801 (2049 decimal).
 
 	jsr $e5f44
 	Introduces a concept called KERNAL functions. Somewhere inside the ROM of the Commodore 64 there are premade utility functions for all kinds of stuff. One of these is located at location $e544 and clears the screen. We could do this manually by looping and writing a space character, but for the scope of this tutorial, a KERNAL call is enough. Jsr means jump to subroutine.
