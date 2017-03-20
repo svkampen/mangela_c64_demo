@@ -92,53 +92,69 @@ text:
 Save the file and run build.bat in the root of the c64-devkit folder. Your emulator should now start and you will see a colored screen with the message “HELLO WORLD” on it. Congratulations, you are now cooler than 97.3% of the population of this planet. You’re welcome.
 
 ## Analyzing the Hello World example
-~~~~ 
-	*=$0801
-	Tells the compiler that our code should be located and executed from the hexadecimal memory location 0801 (2049 decimal).
+`*=$0801`
 
-	jsr $e5f44
-	Introduces a concept called KERNAL functions. Somewhere inside the ROM of the Commodore 64 there are premade utility functions for all kinds of stuff. One of these is located at location $e544 and clears the screen. We could do this manually by looping and writing a space character, but for the scope of this tutorial, a KERNAL call is enough. Jsr means jump to subroutine.
+Tells the compiler that our code should be located and executed from the hexadecimal memory location 0801 (2049 decimal).
 
-	lda #$03
-	Load the hexadecimal number 3 into the accumulator register.
+`jsr $e5f44`
 
-	sta $d020
-	Store the value (3) of the accumulator register in memory location d020. This memory location is responsible for the background color of the screen.
+Introduces a concept called KERNAL functions. Somewhere inside the ROM of the Commodore 64 there are premade utility functions for all kinds of stuff. One of these is located at location $e544 and clears the screen. We could do this manually by looping and writing a space character, but for the scope of this tutorial, a KERNAL call is enough. Jsr means jump to subroutine.
 
-	sta $d021
-	Store the value (3) of the accumulator register in memory location d021. This memory location is responsible for the border color of the screen.
-	
-	ldx #$00
-	Load the number 0 into the X index register. There are two index registers, X and Y. These are mainly used for indexing, looping and indexed addressing.
+`lda #$03`
 
-loop:
-This is a label, something human readable to represent a location in memory that we don’t need to know about.
-	
-	lda text,x
-	Load the first byte from the memory location pointed at by the label text and add the value of index register X. 
-	
-	sta $0400+40*12,x
-	Store the value at memory location (screen memory) $0400 plus 40 columns times 12 rows, and add the value of index register X.
-	
-	inx
-	Increase whatever value is in index register X with 1.
-	
-	cpx #$28
-	Compare if the value in index register X is 40 decimal.
-	
-	bne loop
-	Branch back to the label loop if it is not equal to 40.
+Load the hexadecimal number 3 into the accumulator register.
 
-wait:
+`sta $d020`
+
+Store the value (3) of the accumulator register in memory location d020. This memory location is responsible for the background color of the screen.
+
+`sta $d021`
+
+Store the value (3) of the accumulator register in memory location d021. This memory location is responsible for the border color of the screen.
+	
+`ldx #$00`
+
+Load the number 0 into the X index register. There are two index registers, X and Y. These are mainly used for indexing, looping and indexed addressing.
+
+`loop:`
+
+This is a label, something human readable to represent a location in memory that we don’t need to know about. We could also have pointed directly to a memory address.
+	
+`lda text,x`
+
+Load the first byte from the memory location pointed at by the label text and add the value of index register X. 
+	
+`sta $0400+40*12,x`
+
+Store the value at memory location (screen memory) $0400 plus 40 columns times 12 rows, and add the value of index register X.
+	
+`inx`
+
+Increase whatever value is in index register X with 1.
+	
+`cpx #$28`
+
+Compare if the value in index register X is 40 decimal.
+	
+`bne loop`
+
+Branch back to the label loop if it is not equal to 40.
+
+`wait:`
+
 Another label for a memory location.
-	jsr wait
-	Jump to subroutine wait. Basically, an infinite loop.
 
-text:
+`jsr wait`
+
+Jump to subroutine wait. Basically, an infinite loop.
+
+`text:`
+
 Another label for a memory location.
-	!scr "              hello world               "
-	A special compiler keyword that converts the text hello world into a format that the Commodore 64 understands. Notice that it’s padded with spaces to appear in the center of the screen.
-~~~~ 
+
+`!scr "              hello world               "`
+
+A special compiler keyword that converts the text hello world into a format that the Commodore 64 understands. Notice that it’s padded with spaces to appear in the center of the screen.
 
 ## What happends when I run build.bat?
 The build script does a lot of magic behind the scenes to make your journey into the wonderful world of assembly code as smooth sailing as possible. By taking away the need to know how, you can focus on the what.
