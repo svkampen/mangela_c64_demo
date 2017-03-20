@@ -21,7 +21,7 @@ The Commodore 64 originally released in 1982 is an amazing piece of technical en
 The Commodore 64 operates on 0.985 MHz and 64 KB RAM + 20 KB ROM. In there is an entire, yet limited, operating system with functions for amazing video, dazzling colors and lovely sound.
 
 ## Why write 8-bit assembly code in 2017? Is this your way of dealing with asperger?
-Today we got Visual Studio, Node.js, Google V8, Python, Java, C#, JavaScript, C++, OpenGL, DirectX and other technologies that solves any problem very, very effective but you - the programmer - do not need to care about the underlying hardware and the technologies your software speaks to. You are often operating on several layers above your computer when using modern programming tools and usually do not care about allocating memory, the timing of CPU instructions and how your computer work.
+Today we got Visual Studio, Node.js, Google V8, Python, Java, C#, JavaScript, C++, OpenGL, DirectX and other technologies that solves any problem very, very effective but you - the programmer - do not need to care about the underlying hardware and the technologies your software speaks to. You are often operating on several layers above your computer when using modern programming tools and usually do not care about allocating memory, the timing of CPU instructions and how your computer works.
 
 For example, Your laptop -> Windows -> API -> .NET Framework -> .NET Common Language Runtime -> __Your code__.
 
@@ -29,7 +29,7 @@ When programming assembly code on the Commodore 64 it looks like this: Your Comm
 
 Another thing worth mentioning is the evolution of modern technology which also takes away size constraints, the need for optimization and having to save precious bytes of memory to be able to jam your source code into the machine. In short, having to learn how the hardware works to write software force you to think about what you are doing with every single call and operation, on a fundamental level. I am convinced that this will make you a better programmer regardless of what tools and languages you use in your modern day life.
 
-Oh, and did I mentions it's also __extremely__ fun and challenging.
+Oh, and did I mentions it is also __extremely__ fun and challenging.
 
 ## Wait what? 8-bit?
 The stuff inside your computer is based on tiny numbers called bits. Basically, the more bits your computer can handle, the higher it can count. Back in the (glory) days of home computers 8 bits was all you could get your hands on without spending a fortune.
@@ -57,7 +57,7 @@ For all of you reading this thinking “__WRONG!__, the Commodore 64 can count h
 Congratulations, you now know more about the fundamentals of computers and software development than most of the population of this planet. You're welcome.
 
 ## Hello World
-Using this fabulous devkit we are going to not care about all the tools and scripts needed to get assembly code compiled and crunched and instead focus on writing a very simple program that displays the text "HELLO WORLD" in the middle of the Commodore 64 screen.
+Using this fabulous devkit we are going to focus on writing a very simple program that displays the text "HELLO WORLD" in the middle of the Commodore 64 screen. You do not need to care about all the tools and scripts needed to get assembly code compiled and crunched right now.
 
 Programming the Commodore 64 is all about juggling the right numbers at the right locations in memory at the right time. When we power on (an unmodified) the Commodore 64 it is factory configured to give us a text mode with screen memory located at $0400 hexadecimal (1024 decimal). Some of you grew up staring at this.
 
@@ -89,7 +89,7 @@ text:
 	!scr "              hello world               "
 ~~~~
 
-Save the file and run build.bat in the root of the c64-devkit folder. Your emulator should now start and you will see a colored screen with the message “HELLO WORLD” on it. Congratulations, you are now cooler than 97.3% of the population of this planet. You’re welcome.
+Save the file and run build.bat in the root of the c64-devkit folder. Your emulator should now start and you will see a colored screen with the message “HELLO WORLD” on it. Congratulations, you are now cooler than most of the population of this planet. You’re welcome.
 
 ## Analyzing the Hello World example
 `*=$0801`
@@ -165,17 +165,17 @@ The build script does a lot of magic behind the scenes to make your journey into
 4. Remove the current build.
 5. Create lookup tables with genosine. These are not needed for our Hello World example. Just ignore them.
 6. Compile the source files with ACME and generate an output .prg file in the `build\` directory.
-7. Crunch the output binary with pucrunch and add startup code to it so it's easily runnable on the Commodore 64.
+7. Crunch the output binary with pucrunch and add startup code to it so it is easily runnable on the Commodore 64.
 8. Start the emulator and load your program.
 
 ## Further reading
-We have just begun to scratch the surface and your path to eternal glory starts here. To learn more about the Commodore 64 and how to program it, some of these links helped me a lot.
+We have just begun to scratch the surface and your path to eternal glory starts here. To learn more about the Commodore 64 and how to program it, check out these websites. They helped me a lot.
 
 * [http://sta.c64.org/cbm64krnfunc.html](http://sta.c64.org/cbm64krnfunc.html)
 * [http://sta.c64.org/cbm64mem.html](http://sta.c64.org/cbm64mem.html)
 * [http://codebase64.org/doku.php](http://codebase64.org/doku.php)
 
-## Credits
+## Credits for the included intro
 Code and graphics by Clifford 'Randy' Carnmo
 
 Music by Joakim 'dLx' Falk
