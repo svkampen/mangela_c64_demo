@@ -29,7 +29,7 @@ When programming assembly code on the Commodore 64 it looks like this: Your Comm
 
 Another thing worth mentioning is the evolution of modern technology which also takes away size constraints, the need for optimization and having to save precious bytes of memory to be able to jam your source code into the machine. In short, having to learn how the hardware works to write software force you to think about what you are doing with every single call and operation, on a fundamental level. I am convinced that this will make you a better programmer regardless of what tools and languages you use in your modern day life.
 
-Oh, and did I mentions it is also __extremely__ fun and challenging.
+Oh, and did I mention it is also __extremely__ fun and challenging.
 
 ## Wait what? 8-bit?
 The stuff inside your computer is based on tiny numbers called bits. Basically, the more bits your computer can handle, the higher it can count. Back in the (glory) days of home computers 8 bits was all you could get your hands on without spending a fortune.
@@ -52,7 +52,7 @@ Or if we look at it this way:
   1  1  1  1 1 1 1 1 = 255
 ~~~~
 
-For all of you reading this thinking “__WRONG!__, the Commodore 64 can count higher than 255!” – yes, it can. It has a 16-bit address/memory bus and can allocate 64 KB memory by using two bytes (high and low byte) to form an address location. The individual bytes taking up memory space can only, however, have the value 0 to 255.
+For all of you reading this thinking “__WRONG!__, the Commodore 64 can count higher than 255!” – yes, it can. The 6510 CPU has a 16-bit address bus and can talk to 64 KB memory by using two bytes (high and low byte) to form a higher number. The individual bytes taking up memory space can however only have a value of 0 to 255.
 
 Congratulations, you now know more about the fundamentals of computers and software development than most of the population of this planet. You're welcome.
 
@@ -157,7 +157,7 @@ Another label for a memory location.
 A special compiler keyword that converts the text hello world into a format that the Commodore 64 understands. Notice that it’s padded with spaces to appear in the center of the screen.
 
 ## What happends when I run build.bat?
-The build script does a lot of magic behind the scenes to make your journey into the wonderful world of assembly code as smooth sailing as possible. By taking away the need to know how, you can focus on the what.
+The build script does a lot of magic behind the scenes to make your journey into the wonderful world of assembly code as smooth sailing as possible. The steps taken to transform your source code into a runnable program is basically:
 
 1. Setup a bunch of variables.
 2. Collect all files from the `source\` directory with the `.asm` extension.
@@ -179,3 +179,5 @@ We have just begun to scratch the surface and your path to eternal glory starts 
 Code and graphics by Clifford 'Randy' Carnmo
 
 Music by Joakim 'dLx' Falk
+
+We are both members of the iNSANE demoscene group.
