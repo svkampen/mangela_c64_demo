@@ -41,7 +41,7 @@ A bit is a single 1 or 0 switch that represents if a position in a byte is "on" 
 A byte is made up of 8 binary positions with the corresponding numbers 128 64 32 16 8 4 2 1. Our example above would look this when we map the bits to their number:
 ~~~~
 128 64 32 16 8 4 2 1
-  1  0  0  1 1 0 0 0
+  1  0  0  1 1 0 0 0 = 152
 ~~~~
 Here we have one 128, no 64, no 32, one 16, one 8, no 4, no 2 and no 1. Add these up and you get the decimal number 152 (hexadecimal 98).
 If we turn all the switches on and add them all up the result is 255. This is the highest an 8-bit computer can count in a single operation and it looks like this: `11111111`.
