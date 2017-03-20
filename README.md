@@ -20,7 +20,7 @@ This devkit is based on the following components:
 The Commodore 64 originally released in 1982 is an amazing piece of technical engineering with a huge software catalog and evolving enthusiast scene and demoscene. Some argue that the computer revolution of the early 90's would not have occurred without it. Programming it is very fun and differs fundamentally from modern software development.
 The Commodore 64 operates on 0.985 MHz and 64 KB RAM + 20 KB ROM. In there is an entire, yet limited, operating system with functions for amazing video, dazzling colors and lovely sound.
 
-## Why write 8-bit assembly code in 2017? Is this your way of dealing with asperger?
+## Why write 8-bit assembly code in 2017? Is this your way of dealing with asperger's?
 Today we got Visual Studio, Node.js, Google V8, Python, Java, C#, JavaScript, C++, OpenGL, DirectX and other technologies that solves any problem very, very effective but you - the programmer - do not need to care about the underlying hardware and the technologies your software speaks to. You are often operating on several layers above your computer when using modern programming tools and usually do not care about allocating memory, the timing of CPU instructions and how your computer works.
 
 For example, Your laptop -> Windows -> API -> .NET Framework -> .NET Common Language Runtime -> __Your code__.
@@ -96,7 +96,7 @@ Save the file and run build.bat in the root of the c64-devkit folder. Your emula
 
 Tells the compiler that our code should be located and executed from the hexadecimal memory location 0801 (2049 decimal).
 
-`jsr $e5f44`
+`jsr $e544`
 
 Introduces a concept called KERNAL functions. Somewhere inside the ROM of the Commodore 64 there are premade utility functions for all kinds of stuff. One of these is located at location $e544 and clears the screen. We could do this manually by looping and writing a space character, but for the scope of this tutorial, a KERNAL call is enough. Jsr means jump to subroutine.
 
