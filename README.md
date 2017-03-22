@@ -19,7 +19,7 @@ This devkit is based on the following components:
 
 ## Getting started
 The Commodore 64 originally released in 1982 is an amazing piece of technical engineering with a huge software catalog and evolving enthusiast scene and demoscene. Some argue that the computer revolution of the early 90's would not have occurred without it. Programming it is very fun and differs fundamentally from modern software development.
-The Commodore 64 operates on 0.985 MHz and 64 KB RAM + 20 KB ROM. In there is an entire, yet limited, operating system with functions for amazing video, dazzling colors and lovely sound.
+The Commodore 64 operates on 0.985 MHz (PAL) and 64 KB RAM + 20 KB ROM. In there is an entire, yet limited, operating system with functions for [amazing video](https://www.youtube.com/watch?v=9LFD4SzW3e0), [dazzling colors](https://www.youtube.com/watch?v=Ee5jcpkDnJw) and [lovely sound](https://www.youtube.com/watch?v=2XUxT2pyDos).
 
 ## Why write 8-bit assembly code in 2017? Is this your way of dealing with asperger's?
 Today we got Visual Studio, Node.js, Google V8, Python, Java, C#, JavaScript, C++, OpenGL, DirectX and other technologies that solves any problem very, very effective but you - the programmer - do not need to care about the underlying hardware and the technologies your software speaks to. You are often operating on several layers above your computer when using modern programming tools and usually do not care about allocating memory, the timing of CPU instructions and how your computer works.
