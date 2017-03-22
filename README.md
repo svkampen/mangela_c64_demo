@@ -2,19 +2,20 @@
 All you need to start programming 6510 assembler for the Commodore 64 on Microsoft Windows.
 
 ## Quick usage
-Run `build.bat` to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` which is runnable on a real Commodore 64 or using an emulator.
+Run `build.bat` to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` - a classic oldschool demoscene intro which is runnable on a real Commodore 64 or using an emulator.
 
 ## Notes
 Source code is located in `source\` and can reside in multiple files ending with `.asm`. 
 
 This devkit is based on the following components:
-* ACME https://sourceforge.net/projects/acme-crossass/
-* pucrunch https://github.com/mist64/pucrunch
-* VICE http://vice-emu.sourceforge.net/
-* genosine https://github.com/cliffordcarnmo/genosine
-* Pixcen https://github.com/Hammarberg/pixcen
-* GangEd http://www.thegang.nu/releases.php?type=4&year=all&headline=Utils&nomenu=1
-* vchar64 https://github.com/ricardoquesada/vchar64
+
+- [__ACME__](https://sourceforge.net/projects/acme-crossass) Compiler
+- [__pucrunch__](https://github.com/mist64/pucrunch) Cruncher
+- [__VICE__](http://vice-emu.sourceforge.net) Commodore 64 emulator
+- [__genosine__](https://github.com/cliffordcarnmo/genosine) Sin/Cos LUT generator
+- [__Pixcen__](https://github.com/Hammarberg/pixcen) Graphics and sprites editor
+- [__GangEd__](http://www.thegang.nu/releases.php?type=4&year=all&headline=Utils&nomenu=1) Graphics, sprites, charset etc. multitool
+- [__vchar64__](https://github.com/ricardoquesada/vchar64) Charset etc. editor
 
 ## Getting started
 The Commodore 64 originally released in 1982 is an amazing piece of technical engineering with a huge software catalog and evolving enthusiast scene and demoscene. Some argue that the computer revolution of the early 90's would not have occurred without it. Programming it is very fun and differs fundamentally from modern software development.
@@ -43,8 +44,8 @@ A byte is made up of 8 binary positions with the corresponding numbers 128 64 32
 128 64 32 16 8 4 2 1
   1  0  0  1 1 0 0 0 = 152
 ~~~~
-Here we have one 128, no 64, no 32, one 16, one 8, no 4, no 2 and no 1. Add these up and you get the decimal number 152 (hexadecimal 98).
-If we turn all the switches on and add them all up the result is 255. This is the highest an 8-bit computer can count in a single operation and it looks like this: `11111111`.
+Here we have one 128, no 64, no 32, one 16, one 8, no 4, no 2 and no 1. Add these up and you get the decimal number __152__ (hexadecimal 98).
+If we turn all the switches on and add them all up the result is __255__. This is the highest an 8-bit computer can count in a single operation and it looks like this: `11111111`.
 
 Or if we look at it this way:
 ~~~~
@@ -63,6 +64,7 @@ Programming the Commodore 64 is all about juggling the right numbers at the righ
 
 The screen in text mode is made up of 25 rows with 40 columns. Screen memory is directly mapped to this screen. This means that we have 25 * 40 = 1000 bytes of screen memory that we can bang values straight into and they will magically appear on the screen.
 
+## Writing the Hello World example
 Start by deleting everything in the folder `source\` and create a new file in `source\` called `helloworld.asm`. Open it in your favorite text editor and enter the following.
 ~~~~
 	*=$0801
@@ -92,6 +94,9 @@ text:
 Save the file and run build.bat in the root of the c64-devkit folder. Your emulator should now start and you will see a colored screen with the message “HELLO WORLD” on it. Congratulations, you are now cooler than most of the population of this planet. You’re welcome.
 
 ## Analyzing the Hello World example
+
+Although this is not a [assembler tutorial](https://skilldrick.github.io/easy6502/) here is a breakdown of what you just wrote.
+
 `*=$0801`
 
 Tells the compiler that our code should be located and executed from the hexadecimal memory location 0801 (2049 decimal).
@@ -156,7 +161,7 @@ Another label for a memory location.
 
 A special compiler keyword that converts the text hello world into a format that the Commodore 64 understands. Notice that it’s padded with spaces to appear in the center of the screen.
 
-## What happends when I run build.bat?
+## What happens when I run build.bat?
 The build script does a lot of magic behind the scenes to make your journey into the wonderful world of assembly code as smooth sailing as possible. The steps taken to transform your source code into a runnable program is basically:
 
 1. Setup a bunch of variables.
@@ -171,13 +176,12 @@ The build script does a lot of magic behind the scenes to make your journey into
 ## Further reading
 We have just begun to scratch the surface and your path to eternal glory starts here. To learn more about the Commodore 64 and how to program it, check out these websites. They helped me a lot.
 
-* [http://sta.c64.org/cbm64krnfunc.html](http://sta.c64.org/cbm64krnfunc.html)
-* [http://sta.c64.org/cbm64mem.html](http://sta.c64.org/cbm64mem.html)
-* [http://codebase64.org/doku.php](http://codebase64.org/doku.php)
+- [http://sta.c64.org/cbm64krnfunc.html](http://sta.c64.org/cbm64krnfunc.html)
+- [http://sta.c64.org/cbm64mem.html](http://sta.c64.org/cbm64mem.html)
+- [http://codebase64.org/doku.php](http://codebase64.org/doku.php)
 
 ## Credits for the included intro
-Code and graphics by Clifford 'Randy' Carnmo
+- Code and graphics by Clifford 'Randy' Carnmo
+- Music by Joakim 'dLx' Falk
 
-Music by Joakim 'dLx' Falk
-
-We are both members of the iNSANE demoscene group.
+We are both members of the iNSANE oldschool demoscene group.
