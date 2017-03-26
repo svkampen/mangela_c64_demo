@@ -1,11 +1,11 @@
 # c64-devkit
-All you need to start programming 6510 assembler for the Commodore 64 on Microsoft Windows.
+All you need to start programming 6510 assembler for the Commodore 64 on Microsoft Windows or Linux.
 
 ## Quick usage
-Run `build.bat` to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` - a classic oldschool demoscene intro which is runnable on a real Commodore 64 or using an emulator.
+Run `build.bat` on Windows or `make` on Linux to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` - a classic oldschool demoscene intro which is runnable on a real Commodore 64 or using an emulator.
 
 ## Notes
-Source code is located in `source\` and can reside in multiple files ending with `.asm`. 
+The source code is located in a file called `main.asm` that resides in the `source\` folder.
 
 This devkit is based on the following components:
 
@@ -16,6 +16,14 @@ This devkit is based on the following components:
 - [__Pixcen__](https://github.com/Hammarberg/pixcen) Graphics and sprites editor
 - [__GangEd__](http://www.thegang.nu/releases.php?type=4&year=all&headline=Utils&nomenu=1) Graphics, sprites, charset etc. multitool
 - [__vchar64__](https://github.com/ricardoquesada/vchar64) Charset etc. editor
+
+The Windows binaries was compiled with Visual Studio 2017 under Microsoft Windows 10.
+
+The Linux binaries was compiled with GCC 6.2.0-5 under Ubuntu 16.10 amd64.
+
+Please consult `source.txt` in `compiler`, `cruncher` and `genosine` if you need to compile the binary tools yourself.
+
+
 
 ## Getting started
 The Commodore 64 originally released in 1982 is an amazing piece of technical engineering with a huge software catalog and evolving enthusiast scene and demoscene. Some argue that the computer revolution of the early 90's would not have occurred without it. Programming it is very fun and differs fundamentally from modern software development.
