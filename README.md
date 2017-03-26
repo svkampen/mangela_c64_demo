@@ -21,9 +21,7 @@ The Windows binaries was compiled with Visual Studio 2017 under Microsoft Window
 
 The Linux binaries was compiled with GCC 6.2.0-5 under Ubuntu 16.10 amd64.
 
-Please consult `source.txt` in `compiler`, `cruncher` and `genosine` if you need to compile the binary tools yourself.
-
-
+Please consult `source.txt` in `compiler`, `cruncher` or `genosine` if you need to compile the binary tools yourself.
 
 ## Getting started
 The Commodore 64 originally released in 1982 is an amazing piece of technical engineering with a huge software catalog and evolving enthusiast scene and demoscene. Some argue that the computer revolution of the early 90's would not have occurred without it. Programming it is very fun and differs fundamentally from modern software development.
@@ -169,17 +167,16 @@ Another label for a memory location.
 
 A special compiler keyword that converts the text hello world into a format that the Commodore 64 understands. Notice that it’s padded with spaces to appear in the center of the screen.
 
-## What happens when I run build.bat?
+## What happens when I run `build.bat` or `make`?
 The build script does a lot of magic behind the scenes to make your journey into the wonderful world of assembly code as smooth sailing as possible. The steps taken to transform your source code into a runnable program is basically:
 
 1. Setup a bunch of variables.
-2. Collect all files from the `source\` directory with the `.asm` extension.
-3. Create build and tables directories if they do not exist.
-4. Remove the current build.
-5. Create lookup tables with genosine. These are not needed for our Hello World example. Just ignore them.
-6. Compile the source files with ACME and generate an output .prg file in the `build\` directory.
-7. Crunch the output binary with pucrunch and add startup code to it so it is easily runnable on the Commodore 64.
-8. Start the emulator and load your program.
+2. Create build and tables directories if they do not exist.
+3. Remove the current build.
+4. Create lookup tables with genosine. These are not needed for our Hello World example. Just ignore them.
+5. Compile the source files with ACME and generate an output .prg file in the `build\` directory.
+6. Crunch the output binary with pucrunch and add startup code to it so it is easily runnable on the Commodore 64.
+7. Start the emulator and load your program.
 
 ## Further reading
 We have just begun to scratch the surface and your path to eternal glory starts here. To learn more about the Commodore 64 and how to program it, check out these websites. They helped me a lot.
