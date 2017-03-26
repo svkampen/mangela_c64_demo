@@ -71,7 +71,7 @@ Programming the Commodore 64 is all about juggling the right numbers at the righ
 The screen in text mode is made up of 25 rows with 40 columns. Screen memory is directly mapped to this screen. This means that we have 25 * 40 = 1000 bytes of screen memory that we can bang values straight into and they will magically appear on the screen.
 
 ## Writing the Hello World example
-Start by deleting everything in the folder `source\` and create a new file in `source\` called `helloworld.asm`. Open it in your favorite text editor and enter the following.
+Start by deleting everything in the folder `source\` and create a new file in `source\` called `main.asm`. Open it in your favorite text editor and enter the following.
 ~~~~
 	*=$0801
 	
@@ -97,7 +97,7 @@ text:
 	!scr "              hello world               "
 ~~~~
 
-Save the file and run build.bat in the root of the c64-devkit folder. Your emulator should now start and you will see a colored screen with the message “HELLO WORLD” on it. Congratulations, you are now cooler than most of the population of this planet. You’re welcome.
+Save the file and run `build.bat` on Microsoft Windows or `make` on Linux in the root of the c64-devkit folder. Your emulator should now start and you will see a colored screen with the message “HELLO WORLD” on it. Congratulations, you are now cooler than most of the population of this planet. You’re welcome.
 
 ## Analyzing the Hello World example
 
@@ -173,7 +173,7 @@ The build script does a lot of magic behind the scenes to make your journey into
 1. Setup a bunch of variables.
 2. Remove the current build and tables.
 3. Create lookup tables with genosine. These are not needed for our Hello World example. Just ignore them.
-4. Compile the source files with ACME and generate an output .prg file in the `build\` directory.
+4. Compile the source with ACME and generate an output .prg file in the `build\` directory.
 5. Crunch the output binary with pucrunch and add startup code to it so it is easily runnable on the Commodore 64.
 6. Start the emulator and load your program.
 
