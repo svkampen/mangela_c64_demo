@@ -188,4 +188,4 @@ We have just begun to scratch the surface and your path to eternal glory starts 
 - Code and graphics by Clifford 'Randy' Carnmo
 - Music by Joakim 'dLx' Falk
 
-We are both members of [iNSANE](insane.demoscene.se) - an oldschool demoscene group.
+We are both members of [iNSANE](http://insane.demoscene.se) - an oldschool demoscene group.
