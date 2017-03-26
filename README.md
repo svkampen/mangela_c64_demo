@@ -171,12 +171,11 @@ A special compiler keyword that converts the text hello world into a format that
 The build script does a lot of magic behind the scenes to make your journey into the wonderful world of assembly code as smooth sailing as possible. The steps taken to transform your source code into a runnable program is basically:
 
 1. Setup a bunch of variables.
-2. Create build and tables directories if they do not exist.
-3. Remove the current build.
-4. Create lookup tables with genosine. These are not needed for our Hello World example. Just ignore them.
-5. Compile the source files with ACME and generate an output .prg file in the `build\` directory.
-6. Crunch the output binary with pucrunch and add startup code to it so it is easily runnable on the Commodore 64.
-7. Start the emulator and load your program.
+2. Remove the current build and tables.
+3. Create lookup tables with genosine. These are not needed for our Hello World example. Just ignore them.
+4. Compile the source files with ACME and generate an output .prg file in the `build\` directory.
+5. Crunch the output binary with pucrunch and add startup code to it so it is easily runnable on the Commodore 64.
+6. Start the emulator and load your program.
 
 ## Further reading
 We have just begun to scratch the surface and your path to eternal glory starts here. To learn more about the Commodore 64 and how to program it, check out these websites. They helped me a lot.
