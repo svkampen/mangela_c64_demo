@@ -2,7 +2,7 @@
 All you need to start programming 6510 assembler for the Commodore 64 on Microsoft Windows or Linux.
 
 ## Quick usage
-Run `build.bat` on Windows or `make` on Linux to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` - a classic oldschool demoscene intro which is runnable on a real Commodore 64 or using an emulator.
+Run `build.bat` on Microsoft Windows or `make` on Linux to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` - a classic oldschool demoscene intro which is runnable on a real Commodore 64 or using an emulator.
 
 ## Notes
 The source code is located in a file called `main.asm` that resides in the `source\` folder.
@@ -17,11 +17,11 @@ This devkit is based on the following components:
 - [__GangEd__](http://www.thegang.nu/releases.php?type=4&year=all&headline=Utils&nomenu=1) Graphics, sprites, charset etc. multitool
 - [__vchar64__](https://github.com/ricardoquesada/vchar64) Charset etc. editor
 
-The Windows binaries was compiled with Visual Studio 2017 under Microsoft Windows 10.
+The Microsoft Windows binaries was compiled with Visual Studio 2017 under Microsoft Windows 10.
 
 The Linux binaries was compiled with GCC 6.2.0-5 under Ubuntu 16.10 amd64.
 
-Please consult `source.txt` in `compiler`, `cruncher` or `genosine` if you need to compile the binary tools yourself.
+Please consult `readme.txt` in `compiler\`, `cruncher\` or `genosine\` if you need to compile the tools yourself.
 
 ## Getting started
 The Commodore 64 originally released in 1982 is an amazing piece of technical engineering with a huge software catalog and evolving enthusiast scene and demoscene. Some argue that the computer revolution of the early 90's would not have occurred without it. Programming it is very fun and differs fundamentally from modern software development.
@@ -30,7 +30,7 @@ The Commodore 64 operates on 0.985 MHz (PAL) and 64 KB RAM + 20 KB ROM. In there
 ## Why write 8-bit assembly code in 2017? Is this your way of dealing with asperger's?
 Today we got Visual Studio, Node.js, Google V8, Python, Java, C#, JavaScript, C++, OpenGL, DirectX and other technologies that solves any problem very, very effective but you - the programmer - do not need to care about the underlying hardware and the technologies your software speaks to. You are often operating on several layers above your computer when using modern programming tools and usually do not care about allocating memory, the timing of CPU instructions and how your computer works.
 
-For example, Your laptop -> Windows -> API -> .NET Framework -> .NET Common Language Runtime -> __Your code__.
+For example, Your laptop -> Microsoft Windows -> API -> .NET Framework -> .NET Common Language Runtime -> __Your code__.
 
 When programming assembly code on the Commodore 64 it looks like this: Your Commodore 64 -> __Your code__.
 
