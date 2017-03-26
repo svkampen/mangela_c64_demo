@@ -94,7 +94,7 @@ infoText:
 	sta $ffff
 
 	jsr	music
-	jsr timerSetup
+	jsr	timerSetup
 
 	lda #$00
 	sta $d020
@@ -412,3 +412,30 @@ cl:
 	cpx #36
 	bne cl
 	rts
+
+timerSetup:
+	lda	#$00
+	sta	$dc0e
+	sta	$dc0f
+	sta	$dc0b
+	sta	$dc0a
+	sta	$dc09
+	sta	$dc08
+	rts
+
+textMode:
+	lda #%11001000
+	sta $d016
+
+	lda #%00011011
+	sta $d011
+	rts
+
+graphicsMode:
+	lda #%11011000
+	sta $d016
+
+	lda #%00111011
+	sta $d011
+	rts
+

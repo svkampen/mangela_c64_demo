@@ -32,8 +32,8 @@ al C:5100 .sinTable2
 al C:5400 .sinTable4
 al C:5500 .colorTable
 al C:0b91 .colorCycle
-al C:0bbe .timerSetup
-al C:0bb3 .graphicsMode
-al C:0ba8 .textMode
+al C:0ba8 .timerSetup
+al C:0bc8 .graphicsMode
+al C:0bbd .textMode
 al C:0b99 .cl
 al C:0aa1 .initSprites

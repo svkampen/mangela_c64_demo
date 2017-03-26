@@ -1,5 +1,5 @@
 
-; ******** Source: source\main.asm
+; ******** Source: source/main.asm
      1                          	screen = $0400
      2                          	screenScroller = $0400+40*24
      3                          	code = $0801
@@ -34,7 +34,7 @@
     32                          	*= tables
     33                          sinTable1:
 
-; ******** Source: tables\sin1.dat
+; ******** Source: tables/sin1.dat
      1  5000 4848494a4b4c4c4d   !byte $48,$48,$49,$4a,$4b,$4c,$4c,$4d
      2  5008 4e4e4e4f4f4f4f4e   !byte $4e,$4e,$4e,$4f,$4f,$4f,$4f,$4e
      3  5010 4e4e4d4d4c4b4b4a   !byte $4e,$4e,$4d,$4d,$4c,$4b,$4b,$4a
@@ -68,11 +68,11 @@
     31  50f0 4140404040414141   !byte $41,$40,$40,$40,$40,$41,$41,$41
     32  50f8 4243434445464747   !byte $42,$43,$43,$44,$45,$46,$47,$47
 
-; ******** Source: source\main.asm
+; ******** Source: source/main.asm
     35                          
     36                          sinTable2:
 
-; ******** Source: tables\sin2.dat
+; ******** Source: tables/sin2.dat
      1  5100 9998989897969594   !byte $99,$98,$98,$98,$97,$96,$95,$94
      2  5108 9391908e8c8a8886   !byte $93,$91,$90,$8e,$8c,$8a,$88,$86
      3  5110 84827f7d7b797775   !byte $84,$82,$7f,$7d,$7b,$79,$77,$75
@@ -106,9 +106,9 @@
     31  51f0 78767472706e6d6b   !byte $78,$76,$74,$72,$70,$6e,$6d,$6b
     32  51f8 6a69686766666666   !byte $6a,$69,$68,$67,$66,$66,$66,$66
 
-; ******** Source: source\main.asm
+; ******** Source: source/main.asm
 
-; ******** Source: tables\sin2.dat
+; ******** Source: tables/sin2.dat
      1  5200 9998989897969594   !byte $99,$98,$98,$98,$97,$96,$95,$94
      2  5208 9391908e8c8a8886   !byte $93,$91,$90,$8e,$8c,$8a,$88,$86
      3  5210 84827f7d7b797775   !byte $84,$82,$7f,$7d,$7b,$79,$77,$75
@@ -142,11 +142,11 @@
     31  52f0 78767472706e6d6b   !byte $78,$76,$74,$72,$70,$6e,$6d,$6b
     32  52f8 6a69686766666666   !byte $6a,$69,$68,$67,$66,$66,$66,$66
 
-; ******** Source: source\main.asm
+; ******** Source: source/main.asm
     39                          
     40                          sinTable3:
 
-; ******** Source: tables\sin3.dat
+; ******** Source: tables/sin3.dat
      1  5300 dcdbdbdad9d8d6d5   !byte $dc,$db,$db,$da,$d9,$d8,$d6,$d5
      2  5308 d3d0cecbc8c5c2be   !byte $d3,$d0,$ce,$cb,$c8,$c5,$c2,$be
      3  5310 bbb7b3b0aca8a4a0   !byte $bb,$b7,$b3,$b0,$ac,$a8,$a4,$a0
@@ -180,11 +180,11 @@
     31  53f0 bec2c5c8cbced0d3   !byte $be,$c2,$c5,$c8,$cb,$ce,$d0,$d3
     32  53f8 d5d6d8d9dadbdbdc   !byte $d5,$d6,$d8,$d9,$da,$db,$db,$dc
 
-; ******** Source: source\main.asm
+; ******** Source: source/main.asm
     42                          
     43                          sinTable4:
 
-; ******** Source: tables\sin4.dat
+; ******** Source: tables/sin4.dat
      1  5400 acb1b6bbbfc4c8cd   !byte $ac,$b1,$b6,$bb,$bf,$c4,$c8,$cd
      2  5408 d1d5d8dcdfe2e5e7   !byte $d1,$d5,$d8,$dc,$df,$e2,$e5,$e7
      3  5410 e9ebecedeeeeeeed   !byte $e9,$eb,$ec,$ed,$ee,$ee,$ee,$ed
@@ -218,7 +218,7 @@
     31  54f0 717376797c808387   !byte $71,$73,$76,$79,$7c,$80,$83,$87
     32  54f8 8b9094999da2a7ac   !byte $8b,$90,$94,$99,$9d,$a2,$a7,$ac
 
-; ******** Source: source\main.asm
+; ******** Source: source/main.asm
     45                          
     46                          colorTable:
     47  5500 06060e030d070f01   	!byte $06,$06,$0e,$03,$0d,$07,$0f,$01
@@ -271,7 +271,7 @@
     94  0835 8dffff             	sta $ffff
     95                          
     96  0838 200070             	jsr	music
-    97  083b 20be0b             	jsr timerSetup
+    97  083b 20a80b             	jsr	timerSetup
     98                          
     99  083e a900               	lda #$00
    100  0840 8d20d0             	sta $d020
@@ -331,7 +331,7 @@
    154  0892 a9ff               	lda #$ff
    155  0894 8d19d0             	sta $d019
    156                          	
-   157  0897 20b30b             	jsr graphicsMode
+   157  0897 20c80b             	jsr graphicsMode
    158  089a 200370             	jsr musicPlay
    159  089d 200a0b             	jsr moveSprites
    160  08a0 20910b             	jsr colorCycle
@@ -385,7 +385,7 @@
    208  08d7 ea                 	nop
    209  08d8 ea                 	nop
    210                          
-   211  08d9 20a80b             	jsr textMode
+   211  08d9 20bd0b             	jsr textMode
    212                          
    213  08dc a900               	lda #line1
    214  08de 8d12d0             	sta $d012
@@ -588,25 +588,31 @@
    411  0ba2 e8                 	inx
    412  0ba3 e024               	cpx #36
    413  0ba5 d0f2               	bne cl
-     1  0ba7 60                 	rtsÿtextMode:
-     2  0ba8 a9c8               	lda #%11001000
-     3  0baa 8d16d0             	sta $d016
-     4                          
-     5  0bad a91b               	lda #%00011011
-     6  0baf 8d11d0             	sta $d011
-     7  0bb2 60                 	rts
-     8                          
-     9                          graphicsMode:
-    10  0bb3 a9d8               	lda #%11011000
-    11  0bb5 8d16d0             	sta $d016
-    12                          
-    13  0bb8 a93b               	lda #%00111011
-    14  0bba 8d11d0             	sta $d011
-     1  0bbd 60                 	rtsÿtimerSetup:	
-     2  0bbe a900               	lda	#$00
-     3  0bc0 8d0edc             	sta $dc0e
-     4  0bc3 8d0fdc             	sta $dc0f
-     5  0bc6 8d0bdc             	sta $dc0b
-     6  0bc9 8d0adc             	sta $dc0a
-     7  0bcc 8d09dc             	sta $dc09
-     8  0bcf 8d08dc             	sta $dc08
+   414  0ba7 60                 	rts
+   415                          
+   416                          timerSetup:
+   417  0ba8 a900               	lda	#$00
+   418  0baa 8d0edc             	sta	$dc0e
+   419  0bad 8d0fdc             	sta	$dc0f
+   420  0bb0 8d0bdc             	sta	$dc0b
+   421  0bb3 8d0adc             	sta	$dc0a
+   422  0bb6 8d09dc             	sta	$dc09
+   423  0bb9 8d08dc             	sta	$dc08
+   424  0bbc 60                 	rts
+   425                          
+   426                          textMode:
+   427  0bbd a9c8               	lda #%11001000
+   428  0bbf 8d16d0             	sta $d016
+   429                          
+   430  0bc2 a91b               	lda #%00011011
+   431  0bc4 8d11d0             	sta $d011
+   432  0bc7 60                 	rts
+   433                          
+   434                          graphicsMode:
+   435  0bc8 a9d8               	lda #%11011000
+   436  0bca 8d16d0             	sta $d016
+   437                          
+   438  0bcd a93b               	lda #%00111011
+   439  0bcf 8d11d0             	sta $d011
+   440  0bd2 60                 	rts
+   441                          
