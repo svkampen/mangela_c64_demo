@@ -1,6 +1,8 @@
 # c64-devkit
 All you need to start programming 6510 assembler for the Commodore 64 on Microsoft Windows or Linux.
 
+![Image of Yaktocat](https://netorgft2512811-my.sharepoint.com/personal/clifford_carnmo_com/_layouts/15/guestaccess.aspx?docid=0d878362c9c9d4b53ad71f50a2920313d&authkey=AciQ6vlOwXTJGrABhLszWS8)
+
 ## Quick usage
 Run `build.bat` on Microsoft Windows or `make` on Linux to generate tables, compile the source code, crunch the binary and launch your program in the emulator. This produces `build\c64-devkit.prg` - a classic oldschool demoscene intro which is runnable on a real Commodore 64 or using an emulator.
 
