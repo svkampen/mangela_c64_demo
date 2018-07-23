@@ -88,14 +88,6 @@ loop_text:
     rts
 
 irq:
-    dec $d019
-
-    jsr colwash
-    jsr sid_play
-
-    jmp $ea81
-
-irq_:
     lda #<irq2
     sta $314
     lda #>irq2
@@ -147,7 +139,7 @@ irq2_end:
     sta $d012
 
     asl $d019
-    jmp irq_common_end
+    jmp $ea81
 
 
 irq_common_end: ; plays music, then ends interrupt handler
