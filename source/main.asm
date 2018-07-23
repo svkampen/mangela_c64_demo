@@ -1,15 +1,3 @@
-music_addr=$7000
-sid_init = $7000
-sid_play = $7003
-*=music_addr
-!bin "source/fallen_down.sid",,$7e
-
-ctr=$4000
-clr=$4004
-
-code_addr=$c000
-*=code_addr
-
 main:
     lda #4
     sta ctr
@@ -18,6 +6,7 @@ main:
     jsr init_screen
     jsr init_text
     jsr sid_init
+    jsr sprite_init
     jmp *
 
 init_intr:
@@ -109,6 +98,7 @@ irq:
     lda #4
     sta ctr
     jsr colwash
+    jsr sprite_frame
 ;
 ;    inc clr
 ;    ldx clr
