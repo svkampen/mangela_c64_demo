@@ -1,441 +1,164 @@
-	screen = $0400
-	screenScroller = $0400+40*24
-	code = $0801
-	bitmap = $2000
-	charset = $3800
-	sprites = $3e00
-	bitmapColors = $4000
-	tables = $5000
-	music = $7000
-	musicPlay = $7003
-	bitmapScreen = $8000
-	colors = $d800
+    music_addr=$7000
+    sid_init = $7000
+    sid_play = $7003
+    *=music_addr
+    !bin "source/fallen_down.sid",,$7e
 
-	line1 = 0
-	line2 = 114
+    ctr=$4000
+    clr=$4004
 
-	*= bitmap
-	!binary "graphics/logo-bitmap.dat",2544
+    *=$C000
 
-	*= charset
-	!binary "charset/charset.dat",800
-	
-	*= sprites
-	!binary "sprites/sprites.dat"
+    lda #4
+    sta ctr
 
-	*= bitmapColors
-	!binary "graphics/logo-colors.dat"
+    jsr init_intr
+    jsr init_screen
+    jsr init_text
+    jsr sid_init
+    jmp *
 
-	*= bitmapScreen
-	!binary "graphics/logo-screen.dat"
+init_intr:
+    sei
+    ldy #$7f
+    sty $dc0d
+    sty $dd0d
+    lda $dc0d
+    lda $dd0d
 
-	*= tables
-sinTable1:
-	!source "tables/sin1.dat"
+    lda #$01
+    sta $d01a
 
-sinTable2:
-	!source "tables/sin2.dat"
-	!source "tables/sin2.dat"
+    lda #<irq
+    ldx #>irq
 
-sinTable3:
-	!source "tables/sin3.dat"
+    sta $314
+    stx $315
 
-sinTable4:
-	!source "tables/sin4.dat"
+    lda #$00
+    sta $d012
 
-colorTable:
-	!byte $06,$06,$0e,$03,$0d,$07,$0f,$01
-	!byte $01,$0f,$07,$0d,$03,$0e,$06,$06
+    lda $d011
+    and #$7f
+    sta $d011
 
-colorTable2:
-	!byte $0b,$0b,$0b,$0b,$0b,$0b,$0b,$0b
-	!byte $0b,$0b,$0c,$0c,$0c,$0c,$0c,$0f
-	!byte $0f,$03,$03,$07,$01,$01,$01,$01
-	!byte $01,$07,$03,$03,$0c,$0c,$0b,$0b
-	!byte $0b,$0b,$0b,$0b
+    cli
 
-infoText:
-	!scr "S github.com/cliffordcarnmo/c64-devkit S"
+    rts
 
-	*= music
-	!binary "music/86400_7k.sid",,$7e
+init_screen:
+    ldx #$00    ; set X to black
+    stx $d021   ; set background color
+    stx $d020   ; set border color
+clear:
+    lda #$20    ; Spacebar
+    sta $0400,x
+    sta $0500,x
+    sta $0600,x
+    sta $06e8,x
+    lda #$00
+    sta $d800,x
+    sta $d900,x
+    sta $da00,x
+    sta $dae8,x
+    inx
 
-	*= code
-	jsr $e544
-	jsr initSprites
+    bne clear
 
-	lda #%00011110
-	sta $d018
+    rts
 
-	sei
+init_text:
+    ldx #$00
+loop_text:
+    lda line,x
+    sta $0540,x
 
-	lda #$7f
-	sta $dc0d
-	sta $dd0d
+    lda line2,x
+    sta $0590,x
 
-	lda $dc0d
-	lda $dd0d
+    lda line3,x
+    sta $05e0,x
 
-	lda #$01
-	sta $d01a
+    lda line4,x
+    sta $0630,x
 
-	lda #$1b
-	sta $d011
+    inx
+    cpx #$28
+    bne loop_text
+    rts
 
-	lda #$35
-	sta $01
+irq:
+    dec $d019
 
-	lda #line1
-	sta $d012
+    jsr colwash
+    jsr sid_play
 
-	lda #<irq1
-	sta $fffe
-	lda #>irq1
-	sta $ffff
+    jmp $ea81
 
-	jsr	music
-	jsr	timerSetup
+irq_:
+    lda #<irq2
+    sta $314
+    lda #>irq2
+    sta $315
+    lda #200
+    sta $d012
 
-	lda #$00
-	sta $d020
-	sta $d021
+    ldx #0
+    stx $d021
+    stx $d020
 
-	ldx #$00
-writeText:
-	lda infoText,x
-	sta screen+40*24,x
-	lda #$01
-	sta colors+40*24,x
-	inx
-	cpx #40
-	bne writeText
+    asl $d019
 
-	ldx #$00
-l:
-	lda bitmapColors,x
-	sta colors,x
+    dec ctr
+    bne irq_end
 
-	lda bitmapScreen,x
-	sta $0400,x
+    lda #4
+    sta ctr
+    jsr colwash
+;
+;    inc clr
+;    ldx clr
+;    cpx #13
+;    bne irq_end
+;
+;    ldx #0
+;    stx clr
 
-	inx
-	cpx #$ff
-	bne l
-
-	ldx #$00
-l2:
-	lda bitmapColors+$ff,x
-	sta colors+$ff,x
-
-	lda bitmapScreen+$ff,x
-	sta screen+$ff,x
-
-	inx
-	cpx #$40
-	bne l2
-
-	lda #$02
-	sta $d800+40*24
-	sta $d827+40*24
-
-	cli
-
-mainloop:
-	jsr	plasma
-	jmp mainloop
-
-irq1:
-	pha
-	txa
-	pha
-	tya
-	pha
-
-	lda #$ff
-	sta $d019
-	
-	jsr graphicsMode
-	jsr musicPlay
-	jsr moveSprites
-	jsr colorCycle
-
-	inc $90
-	inc $92
-
-	lda #line2
-	sta $d012
-
-	lda #<irq2
-	sta $fffe
-	lda #>irq2
-	sta $ffff
-
-	pla
-	tay
-	pla
-	tax
-	pla
-
-	rti
+irq_end:
+    jmp irq_common_end
 
 irq2:
-	pha
-	txa
-	pha
-	tya
-	pha
+    ldx clr
 
-	lda #$ff
-	sta $d019
-	
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
+wait_line:
+    lda $d012
+    cmp $d012
+    beq wait_line
 
-	jsr textMode
+    stx $d020
+    stx $d021
 
-	lda #line1
-	sta $d012
+irq2_end:
+    lda #<irq
+    sta $314
+    lda #>irq
+    sta $315
+    lda #0
+    sta $d012
 
-	lda #<irq1
-	sta $fffe
-	lda #>irq1
-	sta $ffff
+    asl $d019
+    jmp irq_common_end
 
-	pla
-	tay
-	pla
-	tax
-	pla
 
-	rti
+irq_common_end: ; plays music, then ends interrupt handler
+    jsr sid_play
+    jmp $ea81
 
-plasma:
-	ldy $64
 
-	!for i, 8, 23 {
-		ldx $90
-		lda sinTable2+i,x
-		adc $64
-		tax
+!source "source/data_colorwash.asm"
+!source "source/sub_colorwash.asm"
 
-		lda sinTable1+i,x
-		sta screen+40*i,y
-		tax
-
-		lda colorTable-64,x
-		ora $dc09
-		and #$07
-		sta colors+40*i,y
-	}
-
-	inc $64
-
-	lda $64
-	cmp #40
-	beq zero64
-	rts
-
-zero64:
-	lda #$00
-	sta $64
-	rts
-
-initSprites:
-	lda #$f8
-	sta $07f8
-	lda #$f9
-	sta $07f9
-	lda #$fa
-	sta $07fa
-	lda #$fb
-	sta $07fb
-	lda #$fc
-	sta $07fc
-	lda #$fd
-	sta $07fd
-	lda #$fe
-	sta $07fe
-	lda #$ff
-	sta $07ff
-
-	lda #$01
-	sta $d025
-	lda #$06
-	sta $d026
-	lda #$02
-	sta $d027
-	sta $d028
-	sta $d029
-	sta $d02a
-	sta $d02b
-	sta $d02c
-	sta $d02d
-	sta $d02e
-
-	lda	#%11111111
-	sta $d015
-	
-	lda #%00000000
-	sta $d01b
-
-	lda #%11111111
-	sta $d01c
-
-	lda #%11000000
-	sta $d01d
-	sta $d017
-	
-	lda #%00000000
-	sta $d010
-
-	rts
-
-moveSprites:
-	ldx $92
-
-	lda sinTable4,x
-	sta $d000
-	lda sinTable3,x
-	sta $d001
-
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-
-	lda sinTable4,x
-	sta $d002
-	lda sinTable3,x
-	sta $d003
-
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-
-	lda sinTable4,x
-	sta $d004
-	lda sinTable3,x
-	sta $d005
-
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-
-	lda sinTable4,x
-	sta $d006
-	lda sinTable3,x
-	sta $d007
-
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-
-	lda sinTable4,x
-	sta $d008
-	lda sinTable3,x
-	sta $d009
-
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-	inx
-
-	lda sinTable4,x
-	sta $d00a
-	lda sinTable3,x
-	sta $d00b
-
-	lda #155
-	sta $d00c
-	lda #155
-	sta $d00d
-
-	lda #190
-	sta $d00e
-	lda #155
-	sta $d00f
-
-	rts
-
-colorCycle:
-	lda colorTable2
-	sta colorTable2+36
-	
-	ldx #$00
-
-cl:
-	lda colorTable2+1,x
-	sta colorTable2,x
-	sta $dbc2,x
-
-	inx
-	cpx #36
-	bne cl
-	rts
-
-timerSetup:
-	lda	#$00
-	sta	$dc0e
-	sta	$dc0f
-	sta	$dc0b
-	sta	$dc0a
-	sta	$dc09
-	sta	$dc08
-	rts
-
-textMode:
-	lda #%11001000
-	sta $d016
-
-	lda #%00011011
-	sta $d011
-	rts
-
-graphicsMode:
-	lda #%11011000
-	sta $d016
-
-	lda #%00111011
-	sta $d011
-	rts
-
+line:    !scr "    marnix en angola zijn plopkoeken    "
+line2:   !scr "       jurriaan is een toffe peer       "
+line3:   !scr " 'k wou dat het volgend jaar april was  "
+line4:   !scr "  want dan is jullie verjaardag alweer  "
