@@ -1,14 +1,16 @@
-    music_addr=$7000
-    sid_init = $7000
-    sid_play = $7003
-    *=music_addr
-    !bin "source/fallen_down.sid",,$7e
+music_addr=$7000
+sid_init = $7000
+sid_play = $7003
+*=music_addr
+!bin "source/fallen_down.sid",,$7e
 
-    ctr=$4000
-    clr=$4004
+ctr=$4000
+clr=$4004
 
-    *=$C000
+code_addr=$c000
+*=code_addr
 
+main:
     lda #4
     sta ctr
 
