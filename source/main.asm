@@ -1,5 +1,5 @@
 main:
-    lda #4
+    lda #5
     sta ctr
 
     jsr init_intr
@@ -9,7 +9,7 @@ main:
     jsr sprite_init
     jmp *
 
-init_intr:
+init_intr: ; set up the raster interrupt to fire at rasterline 0
     sei
     ldy #$7f
     sty $dc0d
@@ -95,11 +95,11 @@ irq:
     dec ctr
     bne irq_end
 
-    lda #4
+    lda #5
     sta ctr
     jsr colwash
     jsr sprite_frame
-;
+
 ;    inc clr
 ;    ldx clr
 ;    cpx #13
@@ -144,5 +144,5 @@ irq_common_end: ; plays music, then ends interrupt handler
 
 line:    !scr "    marnix en angola zijn plopkoeken    "
 line2:   !scr "       jurriaan is een toffe peer       "
-line3:   !scr " 'k wou dat het volgend jaar april was  "
-line4:   !scr "  want dan is jullie verjaardag alweer  "
+line3:   !scr "   't is hun verjaardag die we vieren   "
+line4:   !scr "       wanneer was die ook alweer?      "
